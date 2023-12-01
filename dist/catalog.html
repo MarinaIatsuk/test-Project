@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Каталог</title>
+    
+    <link rel="icon" type="image/x-icon" href="/assets/favicon-6aa44283.ico" />
+    <link rel="shortcut icon" href="/assets/favicon-6aa44283.ico" />
+  <script type="module" crossorigin src="/assets/catalog-f885ba54.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/md5-d3aef2ca.js">
+  <link rel="modulepreload" crossorigin href="/assets/functions-b7e798af.js">
+  <link rel="modulepreload" crossorigin href="/assets/modal-b654d49f.js">
+  <link rel="stylesheet" href="/assets/md5-49ddd5db.css">
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="header__logo logo">
+            <a href="./index.html" class="logo__item"><img src="/assets/logo_black-219ef2b8.svg" alt=""
+                    class="logo__picture"><img src="/assets/logo_text_black-560dcb84.svg" alt=""
+                    class="logo__picture logo__picture_text"></a>
+        </div>
+        <div class="header__links link">
+            <a href="./catalog.html" class="link__item">Каталог</a>
+        </div>
+        <div class="header__search search">
+            <input type="text" placeholder="Поиск" class="search__input">
+            <ul class="search__list list">
+                <!-- <li class="list__item"></li> -->
+            </ul>
+        </div>
+        <div class="header__account account">
+            <div class="account__personal">
+                <div class="account__greeting" id="hiNameUser"></div>
+                <img src="/assets/avatar-b698d66d.svg" alt="avatar" class="account__avatar">
+            </div>
+            <div class="account__exit exit">
+                <div class="exit__text">Выйти&nbsp;</div>
+                <img src="/assets/logout-804022a0.svg" alt="door" class="exit__img">
+            </div>
+            <div class="account__enter" id="hiUser">
+                <button class="account__btn" id="btnOpen">Войти</button>
+            </div>
+        </div>
+        <div class="burger-menu">
+            <a href="" class="burger-menu__button">
+                <span class="burger-menu__lines"></span>
+            </a>
+            <nav class="burger-menu__nav">
+                <a href="./catalog.html" class="burger-menu__link">Каталог</a>
+                <a href="./personalaccount.html" class="burger-menu__link" id="personalAccount">Личный кабинет<img src="/assets/avatar_white-6ef3ba0f.svg" alt="avatar" class="tiny-img"></a>
+                <a class="burger-menu__link" id="btnOpenBurger">Войти<img src="/assets/login_white-c28c9198.svg" alt="door" class="tiny-img"></a>
+                <div class="burger-menu__link burger-menu__exit">Выйти
+                    <img src="/assets/logout_white-cb21945b.svg" alt="door" class="tiny-img">
+                </div>
+                <a href="./index.html" class="burger-menu__link">На главную<img src="/assets/logo_white-95b70524.svg" alt="logo" class="tiny-img"><img src="/assets/logo_text_white-dbcf5166.svg" alt="logo" class="tiny-img"></a>
+            </nav>
+            <div class="burger-menu__overlay"></div>
+        </div>
+    </header>
+
+    <!-- Модальное окно -->
+    <dialog class="dialog" id="windModal">
+        <div class="dialog__close">
+            <button class="dialog__close-btn" id="btnClose">&#10799;</button>
+        </div>
+        <div class="dialog__container" id="formContainer">
+            <div class="dialog__one-block main-form">
+                <h2 class="dialog__title">КиноКосмос</h2>
+                <p class="dialog__text dialog-form">Войти в личный кабинет</p>
+                <form class="dialog-form__form" name="loginForm" novalidate>
+                    <div class="dialog-form__email">
+                        <label for="loginEmail" class="dialog-form__email-text">Email</label>
+                        <input type="email" name="secondEmail" class="dialog-form__email-input" id="loginEmail"
+                            placeholder="Введите email..." required>
+
+                        <p class="dialog-form__email-error error-text" id="dialogEmailError"></p>
+                    </div>
+                    <div class="dialog-form__password">
+                        <label for="loginPassword" class="dialog-form__password-text">Пароль <button
+                                class="dialog-form__password-btn" id="passwordBtn">Забыли пароль?</button></label>
+                        <input name="newPassword" class="dialog-form__password-input" type="password" id="loginPassword"
+                            placeholder="Введите пароль..." minlength="8" required>
+
+                        <p class="dialog-form__password-error error-text" id="dialogPasswError"></p>
+                    </div>
+                    <div class="dialog-form__btn">
+                        <button class="dialog-form__btn-text" id="btnLogin">Войти</button>
+                    </div>
+                </form>
+
+                <div class="dialog__block">
+                    <p class="dialog__block-text">Новенький?</p>
+                    <a class="dialog__block-link" href="./registr.html">создай аккаунт</a>
+                </div>
+            </div>
+
+            <!-- пользователь вводит свой email и кодовое слово -->
+            <div class="dialog__two-block check-input" id="examDate">
+                <h5 class="dialog__text-title dialog-form">Введите почту и кодовое слово, которые Вы вводили при
+                    регистрации
+                </h5>
+                <form class="dialog-form__form" name="secondForm" novalidate>
+                    <div class="dialog-form__email">
+                        <label for="secondEmail" class="dialog-form__email-text">Email</label>
+                        <input type="email" name="secondEmailInput" class="dialog-form__email-input" id="secondEmail"
+                            pattern="^[A-Z0-9\._%\+-]+@[A-Z0-9-]+\.[A-Z]{2,4}$" placeholder="Введите email..." required>
+
+                        <p class="dialog-form__err-email error-text" id="secondEmailErr"></p>
+                    </div>
+                    <div class="dialog-form__secret">
+                        <label for="secondSecret" class="dialog-form__secret-text">Кодовое слово</label>
+                        <input type="text" placeholder="Введите кодовое слово..." name="secondSecretInput"
+                            class="dialog-form__secret-input" id="secondSecret" minlength="2" required>
+
+                        <p class="dialog-form__err-secret error-text" id="secondSecretErr"></p>
+                    </div>
+                    <div class="dialog-form__btn">
+                        <button class="dialog-form__btn-text" id="secondBtn">Проверить</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- пользователь вводит новый пароль и повторяет введенный выше пароль. Пароль перезаписывается в БД -->
+            <div class="dialog__three-block new-pass" id="replacePass">
+                <h5 class="dialog__text-title dialog-form">Введите новый пароль</h5>
+                <form class="dialog-form__form" name="thirdForm" novalidate>
+                    <div class="dialog-form__password">
+                        <label for="thirdPassword" class="dialog-form__password-text">Пароль</label>
+                        <input name="thirdCheckOk" type="password" class="dialog-form__password-input"
+                            id="thirdPassword" placeholder="Введите новый пароль..." minlength="8" required>
+
+                        <p class="dialog-form__err-password error-text" id="thirdPasswordErr"></p>
+                    </div>
+                    <div class="dialog-form__reappassword">
+                        <label for="thirdReappassword" class="dialog-form__reappassword-text">Повторите пароль</label>
+                        <input type="password" name="thirdCheckOk" class="dialog-form__reappassword-input"
+                            id="thirdReappassword" placeholder="Повторите пароль..." minlength="8" required>
+
+                        <p class="dialog-form__err-reappassword error-text" id="thirdReappasswordErr"></p>
+                    </div>
+                    <div class="dialog-form__btn">
+                        <button class="dialog-form__btn-text" id="thirdBtn">Изменить пароль</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Новый пароль успешно зарегестрирован -->
+            <div class="dialog__four-block ok-block">
+                <div class="ok-block__location">
+                    <p class="ok-block__text">Вы успешно изменилии пароль</p>
+                    <button class="ok-block__btn" id="newComwIn">перейти в форму входа</button>
+                </div>
+            </div>
+
+        </div>
+    </dialog>
+
+
+    <main class="main-catalog container">
+        <div class="catalog-container">
+            <div class="catalog__interface">
+                <div class="catalog__header">Каталог</div>
+                <div class="catalog__boxes">
+                    <form class="catalog__box">
+                        <label for="genre">Жанр</label>
+                        <select class="catalog__item" id="genre" name="genre">
+                            <option value="">Все жанры</option>
+                            <option value="1">триллер</option>
+                            <option value="2">драма</option>
+                            <option value="3">криминал</option>
+                            <option value="4">мелодрама</option>
+                            <option value="5">детектив</option>
+                            <option value="6">фантастика</option>
+                            <option value="7">приключения</option>
+                            <option value="8">биография</option>
+                            <option value="9">фильм-нуар</option>
+                            <option value="10">вестерн</option>
+                            <option value="11">боевик</option>
+                            <option value="12">фэнтези</option>
+                            <option value="13">комедия</option>
+                            <option value="14">военный</option>
+                            <option value="15">история</option>
+                            <option value="16">музыка</option>
+                            <option value="17">ужасы</option>
+                            <option value="18">мультфильм</option>
+                            <option value="19">семейный</option>
+                            <option value="20">мюзикл</option>
+                            <option value="21">спорт</option>
+                            <option value="22">документальный</option>
+                            <option value="23">короткометражка</option>
+                            <option value="24">аниме</option>
+                            <option value="26">новости</option>
+                            <option value="27">концерт</option>
+                            <option value="29">церемония</option>
+                            <option value="30">реальное ТВ</option>
+                            <option value="31">игра</option>
+                            <option value="32">ток-шоу</option>
+                            <option value="33">детский</option>
+                        </select>
+                    </form>
+                    <form class="catalog__box">
+                        <label for="country">Страна</label>
+                        <select class="catalog__item" id="country" name="country">
+                            <option value="">Все страны</option>
+                            <option value="34">Россия</option>
+                            <option value="1">США</option>
+                            <option value="2">Швейцария</option>
+                            <option value="3">Франция</option>
+                            <option value="4">Польша</option>
+                            <option value="5">Великобритания</option>
+                            <option value="6">Швеция</option>
+                            <option value="7">Индия</option>
+                            <option value="8">Испания</option>
+                            <option value="9">Германия</option>
+                            <option value="10">Италия</option>
+                            <option value="11">Гонконг</option>
+                            <option value="12">Германия</option>
+                            <option value="13">Австралия</option>
+                            <option value="14">Канада</option>
+                            <option value="15">Мексика</option>
+                            <option value="16">Япония</option>
+                            <option value="17">Дания</option>
+                            <option value="18">Чехия</option>
+                            <option value="19">Ирландия</option>
+                            <option value="21">Китай</option>
+                            <option value="22">Норвегия</option>
+                            <option value="33">СССР</option>
+                            <option value="44">Турция</option>
+                        </select>
+                    </form>
+                    <form class="catalog__box">
+                        <label for="movie-serial">Фильм или сериал?</label>
+                        <select class="catalog__item" id="movie-serial" name="movie-serial">
+                            <option value="ALL">И сериалы и фильмы</option>
+                            <option value="FILM">Фильмы</option>
+                            <option value="TV_SHOW">тв-шоу</option>
+                            <option value="TV_SERIES">Сериалы</option>
+                            <option value="MINI_SERIES">Мини-сериалы</option>
+                        </select>
+                    </form>
+                    <div class="catalog__btn">
+                        <button class="btn">Поиск</button>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="catalog__image image">
+                <img src="data:image/png;base64,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" alt="film-strip" class="image__img">
+                <img src="/assets/astronaut-d290fca4.png" alt="astronaut" class="image__img">
+            </div>
+
+            <div class="content">
+
+            </div>
+            <!-- Модальное окно для неавторизованного пользователя -->
+            <!-- <dialog class="dialog" id="redirectionModal">
+                <div class="dialog__close">
+                    <button class="dialog__close" id="btnCloseRedirectionModal">
+                        &#10799;
+                    </button>
+                </div>
+                <div class="dialog__container" id="redirectionContainer">
+                    <h2 class="dialog__title">Вы не вошли на сайт</h2>
+                    <p class="dialog__text">
+                        Авторизуйтесь, чтобы добавить фильм в избранное.
+                    </p>
+                    <div class="dialog__btn">
+                        <button class="dialog__btn-text" name="redirectToAuthForm" id="btnRedirectToAuth">
+                            Авторизоваться
+                        </button>
+                    </div>
+                </div>
+            </dialog> -->
+
+        </div>
+    </main>
+
+    
+    
+    
+</body>
+
+</html>

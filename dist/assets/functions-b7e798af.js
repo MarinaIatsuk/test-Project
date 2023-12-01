@@ -1,0 +1,1 @@
+import{u as o,r as n}from"./md5-d3aef2ca.js";function l(){window.localStorage.getItem("client")||(window.windModal.showModal(),setTimeout(()=>window.windModal.close(),8e3))}async function r(e,i,a){let t=`likes.${i}`;if(a){const s={};s[t]=!0,await o("users",e,s)}else await n("users",e,t)}export{r as a,l as s};
